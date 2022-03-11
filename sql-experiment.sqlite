@@ -1,0 +1,53 @@
+-- The motive of this basic project is to create a table named friends from scratch and add/delete data from it for practice purpose!
+
+CREATE TABLE friends(
+  id INTEGER,
+  name TEXT,
+  birthday DATE
+);
+
+-- Inserting a user in our table 
+
+INSERT INTO friends(id, name, birthdday)
+VALUES(1, 'Ororo Munroe', '1940-05-30');
+
+-- Let's check if its working
+
+SELECT * FROM friends;
+
+-- Adding 2 more friends
+
+INSERT INTO friends(id, name, birthday)
+VALUES(2, 'avonis', '2001-09-01');
+
+INSERT INTO friends(id, name, birthday)
+VALUES(3, 'vedu', '2003-09-01');
+
+-- Changing name of Ororo
+UPDATE friends
+SET name = 'Storm'
+WHERE id = 1;
+
+-- adding a new column 
+ALTER TABLE friends
+ADD COLUMN email TEXT;
+
+--Updating emails for 3 of them
+UPDATE TABLE friends
+SET email = 'storm@codeacademy.com'
+WHERE id - 1;
+
+UPDATE friends
+SET email = 'avon@codecademy.com'
+WHERE id = 2;
+
+UPDATE friends
+SET email = 'vedu@codecademy.com'
+WHERE id = 3;
+
+-- Removing storm
+DELETE FROM friends
+WHERE id = 1;
+
+--Let's check the result one last time
+SELECT * FROM friends;
