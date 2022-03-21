@@ -1,0 +1,52 @@
+-- Checking data
+SELECT * FROM startups
+Limit 3;
+-- Calculate total number of companies
+SELECT COUNT(name) FROM startups;
+-- Calculate total valuation of all companies
+SELECT SUM(valuation) FROM startups;
+-- Calculate highest amount raised
+SELECT MAX(raised) FROM startups;
+-- find max money raised during seed stage
+SELECT MAX(raised) FROM startups
+WHERE stage = 'Seed';
+-- What year the oldest company was founded 
+SELECT MIN(founded) FROM startups;
+
+-- FInding valuations across diff sectors
+
+-- What is the average valuation
+SELECT AVG(valuation) FROM startups;
+-- Find avg valuation in each category
+SELECT category, AVG(valuation)
+FROM startups
+GROUP BY category;
+--Round the averages to two deci place
+SELECT category, ROUND(AVG(valuation), 2)
+FROM startups
+GROUP BY category;
+-- order it 
+SELECT category, ROUND(AVG(valuation), 2)
+FROM startups
+GROUP BY category
+ORDER BY 2 DESC;
+
+--What are the most competitive markets?
+
+--find category and number of companies usme
+SELECT category, COUNT(name)
+FROM startups
+GROUP BY category;
+--FIlter onlt with more than 3 companies
+SELECT category, COUNT(name)
+FROM startups
+GROUP BY category
+HAVING COUNT(name) > 3;
+
+--Let's see if there's a difference in startups --sizes among different locations:
+
+-- Find avg size of startup in each location
+SELECT location, AVG(employees)
+FROM startups
+GROUP BY location
+HAVING AVG(employees) > 500;
