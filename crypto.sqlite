@@ -1,0 +1,44 @@
+-- Checking data
+
+SELECT * FROM transactions
+LIMIT 4;
+
+-- What is the total money user bought??
+
+SELECT SUM(money_in) FROM transactions;
+
+-- How much money the user sold?
+
+SELECT SUM(money_out) FROM transactions;
+
+-- Calculate total money in transactions
+-- Calculate toal money in where bit is currency
+SELECT COUNT(money_in) FROM transactions;
+SELECT COUNT(money_in) FROM transactions
+WHERE currency LIKE 'BIT';
+
+-- What was the largest transaction?
+
+SELECT MAX(money_in) FROM transactions;
+SELECT MAX(money_out) FROM transactions;
+
+-- What is the avg money in for eth?
+
+SELECT AVG(money_in) FROM transactions
+WHERE currency = 'ETH';
+
+-- Lets make a ledger for different dates
+
+SELECT date, AVG(money_in), AVG(money_out)
+FROM transactions
+GROUP BY date;
+
+-- Giving columns alias for readability
+
+SELECT date,
+       ROUND(AVG(money_in),2) as avg_money_in,
+       ROUND(AVG(money_out),2) as avg_money_out
+FROM transactions
+GROUP BY date;
+
+
