@@ -1,0 +1,56 @@
+-- YELP SQL project(multiple table)
+
+-- Let's scoop into data
+SELECT * 
+FROM places
+LIMIT 5;
+ 
+SELECT * 
+FROM reviews
+LIMIT 5;
+
+-- Find all places that cost 20$ or less
+
+SELECT * FROM places
+WHERE price_point <= '$$' ;
+
+-- What columns can be used to JOIN these 2
+
+-- ANSWER- places and reviews(id and place_id)
+
+--JOINING TABS
+
+-- How the places on welp stand up to reviews
+
+SELECT * 
+FROM places 
+INNER JOIN reviews 
+   ON places.id = reviews.place_id;
+
+-- Modify so that ur result will be organised
+
+SELECT name, average_rating, username,
+rating, review_date, note
+FROM places
+INNER JOIN reviews
+ON places.id = reviews.place_id;
+
+-- Left join do and observe the difference
+
+SELECT places.name, places.average_rating, reviews.username, reviews.rating, reviews.review_date, reviews.note
+FROM places 
+LEFT JOIN reviews 
+   ON places.id = reviews.place_id;
+
+-- Find all id;s that dont have any reviews
+
+SELECT * FROM reviews
+WHERE id IS NULL;
+
+
+
+
+
+
+
+
